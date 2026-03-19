@@ -14,11 +14,13 @@ Check the [Bedrock documentation](https://docs.aws.amazon.com/bedrock/latest/use
 
 ### Module 1: Basic — TwelveLabs on Bedrock Fundamentals
 
-Learn the basics of TwelveLabs Pegasus and Marengo models. Experience the end-to-end flow of Bedrock-based video AI, from video analysis and text embedding generation to semantic search with OpenSearch.
+Learn the basics of TwelveLabs Pegasus and Marengo models. Experience the end-to-end flow of Bedrock-based video AI, from video analysis and text embedding generation to semantic search and serverless VOD pipelines.
 
 | Notebook | Description |
 |----------|-------------|
-| [twelvelabs-bedrock-workshop.ipynb](1_basic/twelvelabs-bedrock-workshop.ipynb) | Pegasus video analysis & Marengo embedding + OpenSearch search |
+| [marengo-workshop.ipynb](1_basic/marengo-workshop.ipynb) | Marengo embedding generation (text, image, video) + vector search with OpenSearch & S3 Vectors |
+| [pegasus-workshop.ipynb](1_basic/pegasus-workshop.ipynb) | Pegasus video analysis — summaries, hashtags, highlights, structured outputs |
+| [vod-pipeline-workshop.ipynb](1_basic/vod-pipeline-workshop.ipynb) | Serverless VOD pipeline — EventBridge + Lambda auto-processing on S3 upload |
 
 ### Module 2: Strands — Multi-Agent Video System
 
@@ -47,6 +49,17 @@ Compare retrieval strategies step by step using Marengo 3.0's visual, audio, and
 04 Dynamic:  Merged at query time, auto weights, reversible       → Adapts to query intent
 ```
 
+### Module 4: Vector DB Comparison — OpenSearch vs S3 Vectors
+
+Compare Amazon OpenSearch Serverless and Amazon S3 Vectors as vector stores for video embeddings. Benchmark ingest speed, search latency (p50/p95/p99), and compare features like hybrid search and metadata filtering.
+
+| Notebook | Description |
+|----------|-------------|
+| [01_setup_and_embeddings.ipynb](4_vector_db_test/01_setup_and_embeddings.ipynb) | Video embedding setup — detects existing embeddings or generates new ones with Marengo |
+| [02_opensearch_serverless.ipynb](4_vector_db_test/02_opensearch_serverless.ipynb) | OpenSearch Serverless — hybrid search (k-NN + BM25), ingest & search benchmark |
+| [03_s3_vectors.ipynb](4_vector_db_test/03_s3_vectors.ipynb) | S3 Vectors — metadata filtering, ingest & search benchmark |
+| [04_comparison.ipynb](4_vector_db_test/04_comparison.ipynb) | Side-by-side comparison — latency charts, feature matrix, workload selection guide |
+
 ## Getting Started
 
 ### Prerequisites
@@ -62,9 +75,12 @@ Compare retrieval strategies step by step using Marengo 3.0's visual, audio, and
 |---------|-------|
 | Amazon Bedrock | TwelveLabs Pegasus (video analysis), Marengo (embedding generation) |
 | Amazon S3 | Video file storage, embedding output storage |
-| Amazon S3 Vectors | ANN vector search (Module 3) |
-| Amazon OpenSearch Serverless | Semantic search (Module 1) |
-| Amazon DynamoDB | Task state management (Module 2) |
+| Amazon S3 Vectors | ANN vector search (Module 1, 3, 4) |
+| Amazon OpenSearch Serverless | Semantic search, hybrid search (Module 1, 4) |
+| Amazon DynamoDB | Task state management (Module 1, 2) |
+| Amazon EventBridge | S3 event routing for VOD pipeline (Module 1) |
+| AWS Lambda | Serverless video processing functions (Module 1) |
+| AWS IAM | Lambda execution roles (Module 1) |
 | Amazon Transcribe | Video transcript generation (Module 2) |
 
 ### Setup
@@ -112,11 +128,13 @@ Run the notebooks in each module directory in order. Follow the instructions wit
 
 ### 모듈 1: Basic — TwelveLabs on Bedrock 기초
 
-TwelveLabs Pegasus와 Marengo 모델의 기본 사용법을 학습합니다. 비디오 분석, 텍스트 임베딩 생성, OpenSearch를 활용한 시맨틱 검색까지 Bedrock 기반 비디오 AI의 전체 흐름을 경험합니다.
+TwelveLabs Pegasus와 Marengo 모델의 기본 사용법을 학습합니다. 비디오 분석, 텍스트 임베딩 생성, 시맨틱 검색, 서버리스 VOD 파이프라인까지 Bedrock 기반 비디오 AI의 전체 흐름을 경험합니다.
 
 | 노트북 | 설명 |
 |--------|------|
-| [twelvelabs-bedrock-workshop.ipynb](1_basic/twelvelabs-bedrock-workshop.ipynb) | Pegasus 비디오 분석 & Marengo 임베딩 + OpenSearch 검색 |
+| [marengo-workshop.ipynb](1_basic/marengo-workshop.ipynb) | Marengo 임베딩 생성 (텍스트, 이미지, 비디오) + OpenSearch & S3 Vectors 벡터 검색 |
+| [pegasus-workshop.ipynb](1_basic/pegasus-workshop.ipynb) | Pegasus 비디오 분석 — 요약, 해시태그, 하이라이트, 구조화 출력 |
+| [vod-pipeline-workshop.ipynb](1_basic/vod-pipeline-workshop.ipynb) | 서버리스 VOD 파이프라인 — EventBridge + Lambda로 S3 업로드 시 자동 처리 |
 
 ### 모듈 2: Strands — 멀티에이전트 비디오 시스템
 
@@ -145,6 +163,17 @@ Marengo 3.0의 visual, audio, transcription 멀티벡터 임베딩을 활용한 
 04 Dynamic:  검색 시 합침, 가중치 자동, 가역적     → 쿼리 의도에 적응
 ```
 
+### 모듈 4: Vector DB 비교 — OpenSearch vs S3 Vectors
+
+Amazon OpenSearch Serverless와 Amazon S3 Vectors를 비디오 임베딩 벡터 저장소로 비교합니다. 인제스트 속도, 검색 레이턴시(p50/p95/p99)를 벤치마크하고, 하이브리드 검색과 메타데이터 필터링 등 기능을 비교합니다.
+
+| 노트북 | 설명 |
+|--------|------|
+| [01_setup_and_embeddings.ipynb](4_vector_db_test/01_setup_and_embeddings.ipynb) | 비디오 임베딩 준비 — 기존 임베딩 감지 또는 Marengo로 새로 생성 |
+| [02_opensearch_serverless.ipynb](4_vector_db_test/02_opensearch_serverless.ipynb) | OpenSearch Serverless — 하이브리드 검색 (k-NN + BM25), 인제스트 & 검색 벤치마크 |
+| [03_s3_vectors.ipynb](4_vector_db_test/03_s3_vectors.ipynb) | S3 Vectors — 메타데이터 필터링, 인제스트 & 검색 벤치마크 |
+| [04_comparison.ipynb](4_vector_db_test/04_comparison.ipynb) | 나란히 비교 — 레이턴시 차트, 기능 매트릭스, 워크로드별 선택 가이드 |
+
 ## 시작하기
 
 ### 사전 요구사항
@@ -160,9 +189,12 @@ Marengo 3.0의 visual, audio, transcription 멀티벡터 임베딩을 활용한 
 |--------|------|
 | Amazon Bedrock | TwelveLabs Pegasus (비디오 분석), Marengo (임베딩 생성) |
 | Amazon S3 | 비디오 파일 저장, 임베딩 결과 저장 |
-| Amazon S3 Vectors | ANN 벡터 검색 (모듈 3) |
-| Amazon OpenSearch Serverless | 시맨틱 검색 (모듈 1) |
-| Amazon DynamoDB | 작업 상태 관리 (모듈 2) |
+| Amazon S3 Vectors | ANN 벡터 검색 (모듈 1, 3, 4) |
+| Amazon OpenSearch Serverless | 시맨틱 검색, 하이브리드 검색 (모듈 1, 4) |
+| Amazon DynamoDB | 작업 상태 관리 (모듈 1, 2) |
+| Amazon EventBridge | VOD 파이프라인 S3 이벤트 라우팅 (모듈 1) |
+| AWS Lambda | 서버리스 비디오 처리 함수 (모듈 1) |
+| AWS IAM | Lambda 실행 역할 (모듈 1) |
 | Amazon Transcribe | 비디오 자막 생성 (모듈 2) |
 
 ### 설정
