@@ -1,0 +1,8 @@
+{
+  "REGION": "us-east-1",
+  "S3_BUCKET": "twelvelabs-video-demo-bucket",
+  "VECTOR_BUCKET": "video-vectors-087967639890",
+  "MODEL_ID_SYNC": "us.twelvelabs.marengo-embed-3-0-v1:0",
+  "DATA_S3_PREFIX": "output/marengo-multivector/embeddings/",
+  "RESULTS_S3_PREFIX": "output/marengo-multivector/results/"
+}
